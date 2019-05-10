@@ -1,0 +1,53 @@
+---
+title: "Determining sufficient read depth with superSeq"
+author: "Andrew J. Bass, David G. Robinson, John D. Storey"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Determining sufficient read depth with superSeq}
+  %\VignetteEngine{knitr::rmarkdown}
+  \usepackage[utf8]{inputenc}
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+The superSeq package can help determine whether a completed study has sufficient read depth to achieve desired statistical power. Using superSeq, we can predict the increase in statistical power from an increasing read depth (given a fixed number of biological replicates). For more details, see our recent [preprint](TODO).
+
+## Quick start guide
+
+The superSeq package requires subsampling data. Here we use the computationally efficient [subSeq](https://github.com/StoreyLab/subSeq) pacakge. First, let's load the package and apply `subsample` to the `bottomly` data set:
+
+```{r quick_start, message = FALSE, warning = FALSE}
+library(superSeq)
+library(subSeq)
+library(Biobase)
+data(bottomly)
+
+bottomly_counts <- exprs(bottomly)
+bottomly_design <- pData(bottomly)
+bottomly_counts <- bottomly_counts[rowSums(bottomly_counts) >= 10, ]
+bottomly_proportions <- 10 ^ seq(-2, 0, 0.1)
+ss = subsample(counts = bottomly_counts,
+               proportions = bottomly_proportions,
+               treatment = bottomly_design$strain, 
+               method = c("voomLimma"),
+               replications = 3,
+               seed = 12345)
+ss_sum <- summary(ss)
+```
+
+Type `?subSeq` for additional details on the subsampling implementation. Now that we have the subsampling results, we can apply the `superSeq` function and view the predictions from the model using the `plot` function:
+
+```{r, fig.width=5}
+ss_obj <- superSeq(ss_sum)
+plot(ss_obj)
+```
+
+It is evident from the above plot that the study is undersaturated, i.e., the study can expect a substantial increase in statistical power from sequencing more reads. We can extract a summary of our predictions as follows:
+
+```{r}
+summary(ss_obj)
+```
+
+The estimated asymptotic number of discoveries is the expected number of differentially expressed genes when the technical variability is minimized. Thus the current read depth provides 53.3\% of the total power and doubling or tripling the read depth will provide a 14.3\% or 21.8\% increase in power, respectively.

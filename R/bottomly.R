@@ -1,0 +1,17 @@
+#' @name bottomly
+#' 
+#' @title RNA-Seq counts from Bottomly et al 2011
+#' 
+#' @docType data
+#' 
+#' @description An expressionSet object of the Bottomly et al study.
+#' 
+#' This was downloaded from the ReCount database of analysis-ready RNA-Seq datasets (Frazee et al 2011).
+#' 
+#' Bottomly D, Walter NA, Hunter JE, et al. Evaluating gene expression in C57BL/6J and DBA/2J mouse striatum
+#'  using RNA-Seq and microarrays. PLoS One. 2011;6(3):e17820. Published 2011 Mar 24. doi:10.1371/journal.pone.0017820
+#' 
+#' Frazee, A. C., Langmead, B., and Leek, J. T. (2011). ReCount: a multi-experiment resource of analysis-ready
+#' RNA-seq gene count datasets. BMC Bioinformatics, 12, 449.
+#' http://bowtie-bio.sourceforge.net/recount/
+NULL

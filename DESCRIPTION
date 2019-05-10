@@ -1,0 +1,21 @@
+Package: superSeq
+Type: Package
+Title: Determining sufficient read depth in RNA-Seq experiments
+Version: 0.0.0.99
+Date: 2019-05-09
+Author: Andrew J. Bass, David G. Robinson, and John D. Storey
+Maintainer: Andrew J. Bass <ajbass@princeton.edu>
+Description: The superSeq package helps determine the sufficient read depth to achieve desired statistical power in an RNA-Seq study.
+Imports: 
+    subSeq,
+    dplyr,
+    purrr,
+    ggplot2
+Suggests:
+    knitr, rmarkdown, Biobase,
+Depends:
+    R(>= 3.1.0)
+VignetteBuilder: knitr
+URL: https://github.com/StoreyLab/superSeq
+License: MIT + file LICENSE
+RoxygenNote: 6.1.0
