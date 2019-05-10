@@ -44,7 +44,7 @@ ss_obj <- superSeq(ss_sum)
 plot(ss_obj)
 ```
 
-It is evident from the above plot that the study is undersaturated, i.e., the study can expect a substantial increase in statistical power from sequencing more reads. We can extract a summary of our predictions as follows:
+It is evident from the above plot that the study is undersaturated, i.e., the study can expect a substantial increase in statistical power from sequencing additional reads. We can extract a summary of our predictions as follows:
 
 ```{r}
 summary(ss_obj)
