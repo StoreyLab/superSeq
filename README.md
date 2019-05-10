@@ -18,7 +18,7 @@ Then install the [devtools](https://github.com/hadley/devtools) package, and use
     install.packages("devtools")
     library(devtools)
     install_github("StoreyLab/subSeq")
-    install_github("foo/bar", build_opts = c("--no-resave-data", "--no-manual"), build_vignettes = TRUE)
+    install_github("StoreyLab/superSeq", build_opts = c("--no-resave-data", "--no-manual"), build_vignettes = TRUE)
 
 Vignette
 ---------------------
