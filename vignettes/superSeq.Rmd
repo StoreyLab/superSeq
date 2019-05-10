@@ -16,7 +16,9 @@ The superSeq package can help determine whether a completed study has sufficient
 
 ## Quick start guide
 
-The superSeq package requires subsampling data. Here we use the computationally efficient [subSeq](https://github.com/StoreyLab/subSeq) pacakge. First, let's load the package and apply `subsample` to the `bottomly` data set:
+The superSeq package predicts the relationship between statistical power and read depth using subsampling data. Therefore, we need to apply a subsampling methodology to the experiment and then fit our model using the `superSeq` function. In this package, we use the computationally efficient [subSeq](https://github.com/StoreyLab/subSeq) package. 
+
+As an example, let's first load the package and apply the subsampling function `subsample` to the `bottomly` data set:
 
 ```{r quick_start, message = FALSE, warning = FALSE}
 library(superSeq)
@@ -24,9 +26,12 @@ library(subSeq)
 library(Biobase)
 data(bottomly)
 
+# Extract count matrix, experimental design and filter low count genes
 bottomly_counts <- exprs(bottomly)
 bottomly_design <- pData(bottomly)
 bottomly_counts <- bottomly_counts[rowSums(bottomly_counts) >= 10, ]
+
+# Generate the subsampling data for this study at specified proportions
 bottomly_proportions <- 10 ^ seq(-2, 0, 0.1)
 ss = subsample(counts = bottomly_counts,
                proportions = bottomly_proportions,
@@ -35,6 +40,7 @@ ss = subsample(counts = bottomly_counts,
                replications = 3,
                seed = 12345)
 ss_sum <- summary(ss)
+head(ss_sum)
 ```
 
 Type `?subSeq` for additional details on the subsampling implementation. Now that we have the subsampling results, we can apply the `superSeq` function and view the predictions from the model using the `plot` function:
