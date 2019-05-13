@@ -3,7 +3,7 @@ superSeq: Determining sufficient read depth in RNA-Seq experiments
 
 The superSeq package models the relationship between statistical power and read depth in an RNA sequencing study. Our algorithm can help predict how many additional reads, if any, should be sequenced to achieve desired statistical power.
 
-See also [superSeq: Determining sufficient sequencing depth in RNA-Seq differential expression studies](TODO).
+See also [superSeq: Determining sufficient sequencing depth in RNA-Seq differential expression studies](https://www.biorxiv.org/content/10.1101/635623v1).
 
 Installation
 -------------
